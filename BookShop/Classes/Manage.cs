@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Formats.Asn1;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -75,5 +76,58 @@ public class Manage
         List<Book> books = await _context.Books.ToListAsync();
 
         return books;
+    }
+
+
+    public async Task<Book> GetBook(int id)
+    {
+        return await _context.Books.FindAsync(id);
+    }
+
+    public string EditBook(Book book)
+    {
+        try
+        {
+            _context.Update(book);
+            _context.SaveChanges();
+
+            return "ثبت موفق تغییرات";
+        }
+        catch (Exception error)
+        {
+
+            return error.Message;
+        }
+
+
+    }
+
+    public async Task<string> DeleteBook(int id,string coverImg)
+    {
+        try
+        {
+            var book = await _context.Books.FindAsync(id);
+            if (book != null)
+            {
+                _context.Books.Remove(book);
+
+                string imgPath = "images\\" + coverImg;
+                if (File.Exists(imgPath))
+                {
+                    File.Delete(imgPath);
+                }
+                await _context.SaveChangesAsync();
+
+                return "حذف موفق";
+            }
+
+            return "رکورد نامعتبر";
+        }
+        catch (Exception error)
+        {
+
+            return error.Message;
+        }
+       
     }
 }

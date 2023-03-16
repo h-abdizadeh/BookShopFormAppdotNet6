@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.btnAddPicture = new System.Windows.Forms.Button();
             this.bookPicture = new System.Windows.Forms.PictureBox();
@@ -51,6 +52,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnDelete);
             this.groupBox1.Controls.Add(this.btnAdd);
             this.groupBox1.Controls.Add(this.btnAddPicture);
             this.groupBox1.Controls.Add(this.bookPicture);
@@ -70,12 +72,26 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ثبت / وبرایش کتاب";
             // 
+            // btnDelete
+            // 
+            this.btnDelete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
+            this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.btnDelete.ForeColor = System.Drawing.Color.White;
+            this.btnDelete.Location = new System.Drawing.Point(199, 602);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(95, 41);
+            this.btnDelete.TabIndex = 12;
+            this.btnDelete.Text = "حذف";
+            this.btnDelete.UseVisualStyleBackColor = false;
+            this.btnDelete.Visible = false;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.btnAdd.Location = new System.Drawing.Point(6, 602);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(288, 41);
+            this.btnAdd.Size = new System.Drawing.Size(187, 41);
             this.btnAdd.TabIndex = 11;
             this.btnAdd.Text = "ثبت کتاب";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -89,10 +105,12 @@
             this.btnAddPicture.TabIndex = 10;
             this.btnAddPicture.Text = "انتخاب تصویر جلد";
             this.btnAddPicture.UseVisualStyleBackColor = true;
+            this.btnAddPicture.Click += new System.EventHandler(this.btnAddPicture_Click);
             // 
             // bookPicture
             // 
             this.bookPicture.BackColor = System.Drawing.Color.White;
+            this.bookPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.bookPicture.Location = new System.Drawing.Point(6, 382);
             this.bookPicture.Name = "bookPicture";
             this.bookPicture.Size = new System.Drawing.Size(288, 200);
@@ -114,10 +132,9 @@
             this.bookInventory.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.bookInventory.Location = new System.Drawing.Point(6, 226);
             this.bookInventory.Name = "bookInventory";
-            this.bookInventory.PlaceholderText = "قیمت (تومان)";
+            this.bookInventory.PlaceholderText = "موجودی ";
             this.bookInventory.Size = new System.Drawing.Size(90, 32);
             this.bookInventory.TabIndex = 7;
-            this.bookInventory.Text = "موجودی ";
             // 
             // bookPrice
             // 
@@ -186,6 +203,7 @@
             this.dataGridView1.RowTemplate.Height = 29;
             this.dataGridView1.Size = new System.Drawing.Size(502, 566);
             this.dataGridView1.TabIndex = 1;
+            this.dataGridView1.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellClick);
             // 
             // groupBox2
             // 
@@ -206,6 +224,7 @@
             this.textBox1.PlaceholderText = "جستجو";
             this.textBox1.Size = new System.Drawing.Size(312, 32);
             this.textBox1.TabIndex = 0;
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // BookForm
             // 
@@ -248,5 +267,6 @@
         private PictureBox bookPicture;
         private TextBox bookSummary;
         private TextBox bookInventory;
+        private Button btnDelete;
     }
 }
